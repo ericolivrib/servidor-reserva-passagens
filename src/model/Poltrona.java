@@ -34,7 +34,7 @@ public class Poltrona {
     public String toString() {
         return "INFORMAÇÕES DA POLTRONA:" +
                 "\n-----------------------------\n" +
-                "Número......: " + getNumero() + "\n" +
-                "Livre.......? " + isLivre() + "\n";
+                "Número......: " + numero + "\n" +
+                "Livre.......? " + livre + "\n";
     }
 }

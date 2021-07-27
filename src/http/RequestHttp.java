@@ -29,9 +29,9 @@ public class RequestHttp {
 
         String[] linha = linhaRequisicao[0].split(" ");
 
-        requisicao.setMetodo(linha[0]);
-        requisicao.setRecurso(linha[1]);
-        requisicao.setProtocolo(linha[2]);
+        requisicao.metodo = linha[0];
+        requisicao.recurso = linha[1];
+        requisicao.protocolo = linha[2];;
 
         System.out.println(requisicao);
 
@@ -66,8 +66,8 @@ public class RequestHttp {
     public String toString() {
         return "DADOS DA REQUISIÇÃO:" +
                 "\n-----------------------------\n" +
-                "Método..........: " + getMetodo() + "\n" +
-                "Recurso.........: " + getRecurso() + "\n" +
-                "Protocolo.......: " + getProtocolo() + "\n";
+                "Método..........: " + metodo + "\n" +
+                "Recurso.........: " + recurso + "\n" +
+                "Protocolo.......: " + protocolo + "\n";
     }
 }

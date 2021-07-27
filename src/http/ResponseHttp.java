@@ -12,14 +12,14 @@ public class ResponseHttp {
     private byte[] cabecalho;
 
     public ResponseHttp(String protocolo, int codigo, String status) {
-        setProtocolo(protocolo);
-        setCodigo(codigo);
-        setStatus(status);
+        this.protocolo = protocolo;
+        this.codigo = codigo;
+        this.status = status;
     }
 
     public void escreverSaida(OutputStream saida) throws IOException {
-        saida.write(getCabecalho());
-        saida.write(getConteudo());
+        saida.write(cabecalho);
+        saida.write(conteudo);
         saida.flush();
     }
 
@@ -67,7 +67,7 @@ public class ResponseHttp {
     public String toString() {
         return "DADOS DA RESPOSTA" +
                 "\n------------------\n" +
-                "Código...........: " + getCodigo() + "\n" +
-                "Status...........: " + getStatus() + "\n";
+                "Código...........: " + codigo + "\n" +
+                "Status...........: " + status + "\n";
     }
 }

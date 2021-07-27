@@ -22,7 +22,7 @@ public class Passageiro {
     public String toString() {
         return "INFORMAÇÕES DO PASSAGEIRO:" +
                 "\n-----------------------------\n" +
-                "Nome......: " + getNome() + "\n" +
-                "IP........: " + getIp() + "\n";
+                "Nome......: " + nome + "\n" +
+                "IP........: " + ip + "\n";
     }
 }

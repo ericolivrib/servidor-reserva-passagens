@@ -17,7 +17,7 @@ public class ServerHttp {
     private int porta;
 
     public ServerHttp(int porta) {
-        setPorta(porta);
+        this.porta = porta;
     }
 
     /**
@@ -26,23 +26,19 @@ public class ServerHttp {
      */
     public void conectar() throws IOException {
 
-        ServerSocket servidor = new ServerSocket(getPorta());
+        ServerSocket servidor = new ServerSocket(porta);
 
-        System.out.println("Servidor conectado na porta " + getPorta() + "! \nAguardando conexão...\n");
+        System.out.println("Servidor conectado na porta " + porta + "! \nAguardando conexão...\n");
+
+        Onibus onibus = new Onibus();
+        ArrayList<Reserva> reservas = new ArrayList<>();
 
         while (true) {
             Socket conexao = servidor.accept();
+            String cliente = conexao.getInetAddress().getHostAddress();
 
-            System.out.println("O cliente " + conexao.getInetAddress().getHostAddress() + " se conectou!\n");
-            new Thread(new ConnectionHttp(conexao, new Onibus(), new ArrayList<Reserva>())).start();
+            System.out.println("O cliente " + cliente + " se conectou!\n");
+            new Thread(new ConnectionHttp(conexao, onibus, reservas)).start();
         }
-    }
-
-    public int getPorta() {
-        return porta;
-    }
-
-    public void setPorta(int porta) {
-        this.porta = porta;
     }
 }

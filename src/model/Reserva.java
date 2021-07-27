@@ -12,10 +12,10 @@ public class Reserva {
     private LocalTime hora;
 
     public Reserva(Passageiro passageiro, Poltrona poltrona, LocalDateTime dataHora) {
-        setPassageiro(passageiro);
-        setPoltrona(poltrona);
-        setData(dataHora.toLocalDate());
-        setHora(dataHora.toLocalTime());
+        this.passageiro = passageiro;
+        this.poltrona = poltrona;
+        this.data = dataHora.toLocalDate();
+        this.hora = dataHora.toLocalTime();
     }
 
     public Passageiro getPassageiro() {
@@ -54,8 +54,8 @@ public class Reserva {
     public String toString() {
         return "INFORMAÇÕES DE RESERVA:" +
                 "\n-----------------------------\n" +
-                "Passageiro......: " + getPassageiro().getNome() + " | " + passageiro.getIp() + "\n" +
-                "Poltrona........: " + getPoltrona().getNumero() + "\n" +
-                "Data e hora.....: " + getData() + " " + getHora() + "\n";
+                "Passageiro......: " + passageiro.getNome() + " | " + passageiro.getIp() + "\n" +
+                "Poltrona........: " + poltrona.getNumero() + "\n" +
+                "Data e hora.....: " + data + " " + hora + "\n";
     }
 }

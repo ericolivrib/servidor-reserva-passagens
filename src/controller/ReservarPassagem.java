@@ -1,6 +1,7 @@
 package controller;
 
 import log.Log;
+import log.Logger;
 import model.*;
 
 import java.time.LocalDateTime;
@@ -16,50 +17,53 @@ public class ReservarPassagem implements Runnable {
     private String registro;
 
     public ReservarPassagem(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
-        setOnibus(onibus);
-        setPassageiro(passageiro);
-        setNumeroPoltrona(numeroPoltrona);
-        setReservas(reservas);
+        this.onibus = onibus;
+        this.reservas = reservas;
+        this.numeroPoltrona = numeroPoltrona;
+        this.passageiro = passageiro;
     }
 
     @Override
     public void run() {
 
-        synchronized (getOnibus().getPoltronas()) {
+        synchronized (onibus.getPoltronas()) {
 
             if (poltronaLivre(getNumeroPoltrona(), getOnibus())) {
 
-                System.out.println("Reservando a poltrona " + getNumeroPoltrona() + " para " + getPassageiro().getNome() + "...");
+                System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...");
 
-                for (Poltrona poltrona : getOnibus().getPoltronas()) {
-                    if (poltrona.getNumero() == getNumeroPoltrona()) {
+                for (Poltrona poltrona : onibus.getPoltronas()) {
+
+                    if (poltrona.getNumero() == numeroPoltrona) {
+
+                        onibus.getPoltronas().get(numeroPoltrona - 1).setLivre(false);
                         poltrona.setLivre(false);
 
-                        setReserva(new Reserva(getPassageiro(), poltrona, LocalDateTime.now()));
+                        reserva = new Reserva(passageiro, poltrona, LocalDateTime.now());
                         reservas.add(reserva);
 
                         System.out.println("Reserva efetuada!");
                     }
                 }
 
-                setRegistro(getPassageiro().getNome() + "\n" +
-                        getPassageiro().getIp() + "\n" +
-                        getReserva().getData() + "\n" +
-                        getReserva().getHora() + "\n" +
-                        "STATUS: Conseguiu concluir a reserva!");
+                registro = passageiro.getNome() + "\n" +
+                        passageiro.getIp() + "\n" +
+                        reserva.getData() + "\n" +
+                        reserva.getHora() + "\n" +
+                        "STATUS: Conseguiu concluir a reserva!";
             }
 
             else {
-                setRegistro(getPassageiro().getNome() + "\n" +
-                        getPassageiro().getIp() + "\n" +
-                        getReserva().getData() + "\n" +
-                        getReserva().getHora() + "\n" +
-                        "STATUS: Falhou na tentativa de reserva!");
+                registro = passageiro.getNome() + "\n" +
+                        passageiro.getIp() + "\n" +
+                        reserva.getData() + "\n" +
+                        reserva.getHora() + "\n" +
+                        "STATUS: Falhou na tentativa de reserva!";
 
                 System.out.println("A reserva não foi efetuada!!!\n");
             }
 
-            new Log(getRegistro());
+            new Log();
         }
     }
 

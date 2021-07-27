@@ -17,15 +17,15 @@ public class ConnectionHttp implements Runnable {
     private ArrayList<Reserva> reservas;
 
     public ConnectionHttp(Socket conexao, Onibus onibus, ArrayList<Reserva> reservas) {
-        setConexao(conexao);
-        setOnibus(onibus);
-        setReservas(reservas);
+        this.conexao = conexao;
+        this.onibus = onibus;
+        this.reservas = reservas;
     }
 
     @Override
     public void run() {
 
-        try (InputStream entrada = getConexao().getInputStream()) {
+        try (InputStream entrada = conexao.getInputStream()) {
 
             RequestHttp req = new RequestHttp().lerRequisicao(entrada);
 
@@ -54,11 +54,11 @@ public class ConnectionHttp implements Runnable {
                 resp.setCabecalho(("HTTP/1.1 404 Not Found\n\n" + html).getBytes(StandardCharsets.UTF_8));
             }
 
-            OutputStream saida = getConexao().getOutputStream();
+            OutputStream saida = conexao.getOutputStream();
             resp.escreverSaida(saida);
         } catch (IOException e) {
             try {
-                getConexao().close();
+                conexao.close();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
