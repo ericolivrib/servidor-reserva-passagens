@@ -4,15 +4,15 @@ Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de re
 
 ### Tecnologias que serão utilizadas
 
-- Java;
-- Bootstrap;
+- Java
+- Bootstrap
 
 ### TODO
 
-- [x] Classe de _request_.
-- [x] Classe de _response_.
-- [x] Thread de conexão com o servidor.
-- [ ] Página de reservas.
-- [ ] Classe para a página de reservas.
-- [ ] Thread de reserva de passagens.
-- [ ] Implementar Produtores e Consumidores para a escrita em log.
+- [x] Classe de _request_
+- [x] Classe de _response_
+- [x] Thread de conexão com o servidor
+- [ ] Página de reservas
+- [ ] Classe para a página de reservas
+- [ ] Thread de reserva de passagens
+- [ ] Implementar Produtores e Consumidores para a escrita em um arquivo de log.
