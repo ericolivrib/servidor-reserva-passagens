@@ -1,91 +1,69 @@
 package log;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 public class Log {
 
     private String registro;
-    private Logger logger;
-    private FileHandler arquivo;
-    private final Object monitor = new Log(getRegistro());
+    private final ArrayList<String> fila = new ArrayList<>(registro.length());
 
     public Log(String registro) {
-        setRegistro(registro);
-        new Thread(new ProduzLog(getRegistro())).start();
-        new Thread(new ConsomeLog(getLogger())).start();
-    }
-
-    /**
-     * Cria o registro.
-     */
-    private class ProduzLog implements Runnable {
-
-        public ProduzLog(String registro) {
-            setRegistro(registro);
-        }
-
-        @Override
-        public void run() {
-
-            synchronized (monitor) {
-                System.out.println("Criando registro...\n");
-                setLogger(Logger.getLogger(registro));
-                getMonitor().notify();
-            }
-        }
-    }
-
-    /**
-     * Armazena o registro em um arquivo de log
-     */
-    private class ConsomeLog implements Runnable {
-
-        public ConsomeLog(Logger logger) {
-            setLogger(logger);
-        }
-
-        @Override
-        public void run() {
-
-            synchronized (monitor) {
-                try {
-                    setArquivo(new FileHandler("Log.txt", true));
-                    getLogger().addHandler(getArquivo());
-                    getMonitor().wait();
-
-                    System.out.println("Armazenou o registro no log!\n");
-                } catch (IOException | InterruptedException ignored) { }
-            }
-        }
-    }
-
-    public String getRegistro() {
-        return registro;
-    }
-
-    public void setRegistro(String registro) {
         this.registro = registro;
+
+        new Thread(new Produtor()).start();
+        new Thread(new Consumidor()).start();
     }
 
-    public Logger getLogger() {
-        return logger;
+    private class Produtor implements Runnable {
+
+        @Override
+        public void run() {
+
+            while (true) {
+                synchronized (fila) {
+                    if (fila.size() == registro.length()) {
+                        try {
+                            fila.wait();
+                        } catch (InterruptedException ignored) { }
+                    }
+
+                    fila.add(registro);
+                    fila.notify();
+
+                    System.out.println("[LOG] Gravou um registro");
+                }
+            }
+        }
     }
 
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }
+    private class Consumidor implements Runnable {
 
-    public FileHandler getArquivo() {
-        return arquivo;
-    }
+        @Override
+        public void run() {
 
-    public void setArquivo(FileHandler arquivo) {
-        this.arquivo = arquivo;
-    }
+            while (true) {
+                synchronized (this) {
+                    if (fila.size() == 0) {
+                        try {
+                            fila.wait();
+                        } catch (InterruptedException ignored) { }
+                    }
 
-    public Object getMonitor() {
-        return monitor;
+                    String reg = fila.remove(0);
+
+                    try {
+                        FileHandler alimentador = new FileHandler("log.txt", true);
+                        Logger logger = Logger.getLogger(reg);
+                        logger.addHandler(alimentador);
+
+                        System.out.println("[LOG] Adicionou o registro no arquivo de log.");
+                        fila.notify();
+                    } catch (IOException ignored) { }
+                }
+            }
+        }
     }
 }

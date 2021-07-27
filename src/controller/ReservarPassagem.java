@@ -1,7 +1,6 @@
 package controller;
 
 import log.Log;
-import log.Logger;
 import model.*;
 
 import java.time.LocalDateTime;
@@ -63,7 +62,7 @@ public class ReservarPassagem implements Runnable {
                 System.out.println("A reserva não foi efetuada!!!\n");
             }
 
-            new Log();
+            new Log(registro);
         }
     }
 

@@ -12,7 +12,7 @@ Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de re
 - [x] Classe de _request_
 - [x] Classe de _response_
 - [x] Thread de conexão com o servidor
-- [x] Thread de reserva de passagens
+- [ ] Thread de reserva de passagens
 - [ ] Implementar Produtores e Consumidores para a escrita no arquivo _Log.txt_
 - [ ] Página de reservas
 - [ ] Classe para a página de reservas
