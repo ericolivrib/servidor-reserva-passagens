@@ -31,10 +31,13 @@ public class ConnectionHttp implements Runnable {
 
             ResponseHttp resp;
 
+            // exemplo usado para o teste de conexão
+            String html;
+
             if (req.getRecurso().equals("/")) {
                 resp = new ResponseHttp(req.getProtocolo(), 200, "OK");
 
-                String html = "<html><body><h1>Conectado!</h1></body></html>";
+                html = "<html><body><h1>Conectado!</h1></body></html>";
 
                 resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
@@ -45,7 +48,7 @@ public class ConnectionHttp implements Runnable {
             else {
                 resp = new ResponseHttp(req.getProtocolo(), 404, "Not Found");
 
-                String html = "<html><body><h1>Página não encontrada!</h1></body></html>";
+                html = "<html><body><h1>Página não encontrada!</h1></body></html>";
 
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
                 resp.setCabecalho(("HTTP/1.1 404 Not Found\n\n" + html).getBytes(StandardCharsets.UTF_8));
