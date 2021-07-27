@@ -5,7 +5,7 @@ Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de re
 ### Tecnologias que serão utilizadas
 
 - Java
-- Bootstrap
+- Bootstrap (dentro de uma classe)
 
 ### TODO
 
