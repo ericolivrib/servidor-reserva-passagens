@@ -32,8 +32,9 @@ public class Poltrona {
 
     @Override
     public String toString() {
-        return "INFORMAÇÕES DA POLTRONA:" + "\n" +
-                "Número......: " + numero + "\n" +
-                "Livre.......? " + livre;
+        return "INFORMAÇÕES DA POLTRONA:" +
+                "\n-----------------------------\n" +
+                "Número......: " + getNumero() + "\n" +
+                "Livre.......? " + isLivre() + "\n";
     }
 }

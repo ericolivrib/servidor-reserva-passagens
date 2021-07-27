@@ -3,7 +3,6 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Arrays;
 
 public class Reserva {
 
@@ -12,11 +11,11 @@ public class Reserva {
     private LocalDate data;
     private LocalTime hora;
 
-    public Reserva(Passageiro passageiro, Poltrona poltronas, LocalDateTime dataHora) {
-        this.passageiro = passageiro;
-        this.poltrona = poltronas;
-        this.data = dataHora.toLocalDate();
-        this.hora = dataHora.toLocalTime();
+    public Reserva(Passageiro passageiro, Poltrona poltrona, LocalDateTime dataHora) {
+        setPassageiro(passageiro);
+        setPoltrona(poltrona);
+        setData(dataHora.toLocalDate());
+        setHora(dataHora.toLocalTime());
     }
 
     public Passageiro getPassageiro() {
@@ -53,8 +52,10 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "INFORMAÇÕES DE RESERVA:" + "\n" +
-                "Passageiro......: " + passageiro.getNome() + " | " + passageiro.getIp() +
-                "Poltrona........: " + poltrona.getNumero();
+        return "INFORMAÇÕES DE RESERVA:" +
+                "\n-----------------------------\n" +
+                "Passageiro......: " + getPassageiro().getNome() + " | " + passageiro.getIp() + "\n" +
+                "Poltrona........: " + getPoltrona().getNumero() + "\n" +
+                "Data e hora.....: " + getData() + " " + getHora() + "\n";
     }
 }

@@ -20,8 +20,9 @@ public class Passageiro {
 
     @Override
     public String toString() {
-        return "INFORMAÇÕES DO PASSAGEIRO:" + "\n" +
-                "Nome......: " + nome + "\n" +
-                "IP........: " + ip;
+        return "INFORMAÇÕES DO PASSAGEIRO:" +
+                "\n-----------------------------\n" +
+                "Nome......: " + getNome() + "\n" +
+                "IP........: " + getIp() + "\n";
     }
 }

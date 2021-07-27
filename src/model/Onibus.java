@@ -8,9 +8,13 @@ public class Onibus {
 
     public Onibus() {
 
-        for (int i = 1; i <= poltronas.size(); i++) {
+        for (int i = 1; i <= getPoltronas().size(); i++) {
             Poltrona poltrona = new Poltrona(i, true);
-            poltronas.add(poltrona);
+            getPoltronas().add(poltrona);
         }
+    }
+
+    public ArrayList<Poltrona> getPoltronas() {
+        return poltronas;
     }
 }
