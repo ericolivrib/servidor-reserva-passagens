@@ -31,9 +31,11 @@ public class Log {
                     }
 
                     fila.add(registro);
-                    fila.notify();
+                    System.out.println("[LOG] Gravou um registro.");
 
-                    System.out.println("[LOG] Gravou um registro");
+                    if (fila.size() ==  1) {
+                        fila.notify();
+                    }
                 }
             }
         }
@@ -60,7 +62,10 @@ public class Log {
                         logger.addHandler(alimentador);
 
                         System.out.println("[LOG] Adicionou o registro no arquivo de log.");
-                        fila.notify();
+
+                        if (fila.size() == registro.length() - 1) {
+                            fila.notify();
+                        }
                     } catch (IOException ignored) { }
                 }
             }
