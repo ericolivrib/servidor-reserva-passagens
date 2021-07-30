@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Onibus {
 
-    private ArrayList<Poltrona> poltronas = new ArrayList<>(28);
+    private final ArrayList<Poltrona> poltronas = new ArrayList<>(28);
 
     public Onibus() {
 
@@ -36,6 +36,24 @@ public class Onibus {
         Poltrona poltrona26 = new Poltrona(26, true);
         Poltrona poltrona27 = new Poltrona(27, true);
         Poltrona poltrona28 = new Poltrona(28, true);
+        Poltrona poltrona29 = new Poltrona(29, true);
+        Poltrona poltrona30 = new Poltrona(30, true);
+        Poltrona poltrona31 = new Poltrona(31, true);
+        Poltrona poltrona32 = new Poltrona(32, true);
+        Poltrona poltrona33 = new Poltrona(33, true);
+        Poltrona poltrona34 = new Poltrona(34, true);
+        Poltrona poltrona35 = new Poltrona(35, true);
+        Poltrona poltrona36 = new Poltrona(36, true);
+        Poltrona poltrona37 = new Poltrona(37, true);
+        Poltrona poltrona38 = new Poltrona(38, true);
+        Poltrona poltrona39 = new Poltrona(39, true);
+        Poltrona poltrona40 = new Poltrona(40, true);
+        Poltrona poltrona41 = new Poltrona(41, true);
+        Poltrona poltrona42 = new Poltrona(42, true);
+        Poltrona poltrona43 = new Poltrona(43, true);
+        Poltrona poltrona44 = new Poltrona(44, true);
+        Poltrona poltrona45 = new Poltrona(45, true);
+        Poltrona poltrona46 = new Poltrona(46, true);
 
         poltronas.add(poltrona1);
         poltronas.add(poltrona2);
@@ -65,6 +83,24 @@ public class Onibus {
         poltronas.add(poltrona26);
         poltronas.add(poltrona27);
         poltronas.add(poltrona28);
+        poltronas.add(poltrona29);
+        poltronas.add(poltrona30);
+        poltronas.add(poltrona31);
+        poltronas.add(poltrona32);
+        poltronas.add(poltrona33);
+        poltronas.add(poltrona34);
+        poltronas.add(poltrona35);
+        poltronas.add(poltrona36);
+        poltronas.add(poltrona37);
+        poltronas.add(poltrona38);
+        poltronas.add(poltrona39);
+        poltronas.add(poltrona40);
+        poltronas.add(poltrona41);
+        poltronas.add(poltrona42);
+        poltronas.add(poltrona43);
+        poltronas.add(poltrona44);
+        poltronas.add(poltrona45);
+        poltronas.add(poltrona46);
     }
 
     public ArrayList<Poltrona> getPoltronas() {
