@@ -25,8 +25,6 @@ public class RequestHttp {
 
         String dadosRequisicao = new String(buffer, 0, tam_buffer);
 
-        System.out.println(dadosRequisicao);
-
         String[] linhaRequisicao = dadosRequisicao.split("\n");
 
         String[] linha = linhaRequisicao[0].split(" ");

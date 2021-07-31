@@ -1,0 +1,40 @@
+-----------------------------------------
+NOME: Magda Shirley Silva
+IP: /127.0.0.1
+POLTRONA: 10
+DATA: 2021-07-30
+HORA: 23:49:49.399
+STATUS: Conseguiu concluir a reserva!
+-----------------------------------------
+-----------------------------------------
+NOME: Ricardo Pereira Ribeiro
+IP: /127.0.0.1
+POLTRONA: 22
+DATA: 2021-07-30
+HORA: 23:56:04.853
+STATUS: Conseguiu concluir a reserva!
+-----------------------------------------
+-----------------------------------------
+NOME: Erico
+IP: /127.0.0.1
+POLTRONA: 10
+DATA: 2021-07-31
+HORA: 00:00:59.290
+STATUS: Conseguiu concluir a reserva!
+-----------------------------------------
+-----------------------------------------
+NOME: Marlon
+IP: /127.0.0.1
+POLTRONA: 17
+DATA: 2021-07-31
+HORA: 00:02:20.522
+STATUS: Conseguiu concluir a reserva!
+-----------------------------------------
+-----------------------------------------
+NOME: Erico+Ribeiro
+IP: /127.0.0.1
+POLTRONA: 10
+DATA: 2021-07-31
+HORA: 00:05:50.729
+STATUS: Conseguiu concluir a reserva!
+-----------------------------------------

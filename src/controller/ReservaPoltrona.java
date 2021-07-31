@@ -28,7 +28,7 @@ public class ReservaPoltrona implements Runnable {
 
             if (poltronaLivre(numeroPoltrona, onibus)) {
 
-                System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...");
+                System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...\n");
 
                 for (Poltrona poltrona : onibus.getPoltronas()) {
 
@@ -44,11 +44,11 @@ public class ReservaPoltrona implements Runnable {
                     }
                 }
 
-                String[] nome = passageiro.getNome().split("[+]");
+                String[] nome = passageiro.getNome().split("\\+");
 
                 registro = "" +
                     "-----------------------------------------\n" +
-                    "NOME: " + nome[0] + " " + nome[1] + " " + nome[2] +"\n" +
+                    "NOME: " + passageiro.getNome() +"\n" +
                     "IP: " + passageiro.getIp() + "\n" +
                     "POLTRONA: " + numeroPoltrona + "\n" +
                     "DATA: " + reserva.getData() + "\n" +

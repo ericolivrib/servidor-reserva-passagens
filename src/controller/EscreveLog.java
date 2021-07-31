@@ -18,7 +18,7 @@ public class EscreveLog {
         synchronized (fila) {
             fila.add(registro);
             fila.notify();
-            System.out.println("[LOG] Gravou o registro. \"" + registro + "\"");
+            System.out.println("[LOG] Gravou o registro da reserva.\n");
 
             new Thread(new EscreveLog.Consumidor()).start();
         }
@@ -40,7 +40,7 @@ public class EscreveLog {
                     }
 
                     reg = fila.remove(0);
-                    System.out.println("[LOG] Item gravado: " + reg +"");
+                    System.out.println("[LOG] Salvou o registro.\n");
 
                     try {
                         arquivo = new File("log.txt");
