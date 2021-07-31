@@ -1,6 +1,9 @@
 package controller.http;
 
+import controller.ReservaPoltrona;
 import model.Onibus;
+import model.Passageiro;
+import model.Poltrona;
 import model.Reserva;
 import view.PaginaWeb;
 
@@ -29,6 +32,7 @@ public class ConnectionHttp implements Runnable {
         try (InputStream entrada = conexao.getInputStream()) {
 
             RequestHttp req = new RequestHttp().lerRequisicao(entrada);
+            System.out.println(req);
 
             ResponseHttp resp;
 
@@ -46,6 +50,30 @@ public class ConnectionHttp implements Runnable {
                 System.out.println(resp);
             }
 
+            else if (req.getRecurso().contains("/reservar")) {
+
+                String[] dadosReserva = req.getRecurso().split("[?,=,&]");
+
+                Passageiro passageiro = new Passageiro(dadosReserva[2], conexao.getInetAddress().toString());
+                Poltrona poltrona = new Poltrona(Integer.parseInt(dadosReserva[4]));
+
+                new Thread(new ReservaPoltrona(onibus, reservas, poltrona.getNumero(), passageiro)).start();
+
+                String retorno;
+
+                if (onibus.getPoltronas().get(poltrona.getNumero() - 1).isLivre()) {
+                    retorno = "Ops";
+                } else {
+                    retorno = "OK";
+                }
+
+                html = new PaginaWeb().getHtml(onibus, reservas, retorno);
+
+                resp = new ResponseHttp(req.getProtocolo(), 200, "OK");
+
+                resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
+                resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
+            }
 
             else {
                 resp = new ResponseHttp(req.getProtocolo(), 404, "Not Found");

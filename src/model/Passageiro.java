@@ -3,9 +3,9 @@ package model;
 public class Passageiro {
 
     private String nome;
-    private int ip;
+    private String ip;
 
-    public Passageiro(String nome, int ip) {
+    public Passageiro(String nome, String ip) {
         this.nome = nome;
         this.ip = ip;
     }
@@ -14,7 +14,7 @@ public class Passageiro {
         return nome;
     }
 
-    public int getIp() {
+    public String getIp() {
         return ip;
     }
 

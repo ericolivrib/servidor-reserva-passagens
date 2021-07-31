@@ -1,11 +1,15 @@
 package controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-
 public class EscreveLog {
+
+    static File arquivo;
+    static FileWriter escritorArquivo;
+    static BufferedWriter escritorBuffer;
 
     private static final ArrayList<String> fila = new ArrayList<>();
 
@@ -15,8 +19,6 @@ public class EscreveLog {
             fila.add(registro);
             fila.notify();
             System.out.println("[LOG] Gravou o registro. \"" + registro + "\"");
-
-            new Thread(new Consumidor()).start();
         }
     }
 
@@ -39,10 +41,24 @@ public class EscreveLog {
                     System.out.println("[LOG] Item gravado: " + reg +"");
 
                     try {
-                        FileHandler alimentador = new FileHandler("Log.txt", true);
-                        Logger logger = Logger.getLogger(reg);
-                        logger.addHandler(alimentador);
-                    } catch (IOException ignored) { }
+                        arquivo = new File("log.txt");
+
+                        if (!arquivo.exists()) {
+                            arquivo.createNewFile();
+                        }
+
+                        escritorArquivo = new FileWriter(arquivo, true);
+                        escritorBuffer = new BufferedWriter(escritorArquivo);
+
+                        escritorBuffer.write(reg);
+                        escritorBuffer.newLine();
+
+                        escritorBuffer.close();
+                        escritorArquivo.close();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

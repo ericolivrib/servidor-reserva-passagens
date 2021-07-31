@@ -33,7 +33,7 @@ public class RequestHttp {
 
         requisicao.metodo = linha[0];
         requisicao.recurso = linha[1];
-        requisicao.protocolo = linha[2];;
+        requisicao.protocolo = linha[2];
 
         return requisicao;
     }

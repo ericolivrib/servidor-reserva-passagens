@@ -131,12 +131,11 @@ public class PaginaWeb {
 
     public String formulario = "" +
         "<br>\n" +
-        "<form class=\"row g-3 \" action=\"teste.html\">\n" +
+        "<form class=\"row g-3 \" action=\"/reservar\">\n" +
             "<div class=\"form-group\">\n" +
                 "<div class=\"col-md-6 offset-md-3\">\n" +
                     "<label for=\"passageiro\" class=\"visually-hidden\">Nome do passageiro</label>\n" +
-                    "<input type=\"text\" class=\"form-control\" name=\"passageiro\" id=\"passageiro\"\n" +
-                    "placeholder=\"Nome do passageiro\">\n" +
+                    "<input type=\"text\" class=\"form-control\" name=\"passageiro\" id=\"passageiro\" required placeholder=\"Nome do passageiro\">\n" +
                 "</div>\n" +
             "</div>\n" +
 

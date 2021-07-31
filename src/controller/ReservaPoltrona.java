@@ -5,7 +5,7 @@ import model.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ReservaPassagem implements Runnable {
+public class ReservaPoltrona implements Runnable {
 
     private Onibus onibus;
     private Reserva reserva;
@@ -14,7 +14,7 @@ public class ReservaPassagem implements Runnable {
     private int numeroPoltrona;
     private String registro;
 
-    public ReservaPassagem(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
+    public ReservaPoltrona(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
         this.onibus = onibus;
         this.reservas = reservas;
         this.numeroPoltrona = numeroPoltrona;
@@ -44,19 +44,27 @@ public class ReservaPassagem implements Runnable {
                     }
                 }
 
-                registro = passageiro.getNome() + "\n" +
-                        passageiro.getIp() + "\n" +
-                        reserva.getData() + "\n" +
-                        reserva.getHora() + "\n" +
-                        "STATUS: Conseguiu concluir a reserva!";
+                registro = "" +
+                        "-----------------------------------------\n" +
+                        "NOME: " + passageiro.getNome() + "\n" +
+                        "IP: " + passageiro.getIp() + "\n" +
+                        "POLTRONA: " + numeroPoltrona + "\n" +
+                        "DATA: " + reserva.getData() + "\n" +
+                        "HORA: " + reserva.getHora() + "\n" +
+                        "STATUS: Conseguiu concluir a reserva!\n" +
+                        "-----------------------------------------";
             }
 
             else {
-                registro = passageiro.getNome() + "\n" +
-                        passageiro.getIp() + "\n" +
-                        reserva.getData() + "\n" +
-                        reserva.getHora() + "\n" +
-                        "STATUS: Falhou na tentativa de reserva!";
+                registro = "" +
+                        "-----------------------------------------\n" +
+                        "NOME: " + passageiro.getNome() + "\n" +
+                        "IP: " + passageiro.getIp() + "\n" +
+                        "POLTRONA: " + numeroPoltrona + "\n" +
+                        "DATA: " + reserva.getData() + "\n" +
+                        "HORA: " + reserva.getHora() + "\n" +
+                        "STATUS: Falhou na tentativa de reserva!\n" +
+                        "-----------------------------------------";
 
                 System.out.println("A reserva não foi efetuada!!!\n");
             }
