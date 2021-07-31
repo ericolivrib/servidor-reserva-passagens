@@ -1,4 +1,4 @@
-package http;
+package controller.http;
 
 import model.Onibus;
 import model.Reserva;
@@ -11,10 +11,11 @@ import java.util.ArrayList;
 public class ServerHttp {
 
     public static void main(String[] args) throws IOException {
+
         new ServerHttp(80).conectar();
     }
 
-    private int porta;
+    private final int porta;
 
     public ServerHttp(int porta) {
         this.porta = porta;
@@ -37,7 +38,6 @@ public class ServerHttp {
             Socket conexao = servidor.accept();
             String cliente = conexao.getInetAddress().getHostAddress();
 
-            System.out.println("O cliente " + cliente + " se conectou!\n");
             new Thread(new ConnectionHttp(conexao, onibus, reservas)).start();
         }
     }

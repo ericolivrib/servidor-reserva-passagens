@@ -1,4 +1,4 @@
-package http;
+package controller.http;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +25,8 @@ public class RequestHttp {
 
         String dadosRequisicao = new String(buffer, 0, tam_buffer);
 
+        System.out.println(dadosRequisicao);
+
         String[] linhaRequisicao = dadosRequisicao.split("\n");
 
         String[] linha = linhaRequisicao[0].split(" ");
@@ -32,8 +34,6 @@ public class RequestHttp {
         requisicao.metodo = linha[0];
         requisicao.recurso = linha[1];
         requisicao.protocolo = linha[2];;
-
-        System.out.println(requisicao);
 
         return requisicao;
     }

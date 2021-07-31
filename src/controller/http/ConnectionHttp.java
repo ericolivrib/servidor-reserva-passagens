@@ -1,7 +1,8 @@
-package http;
+package controller.http;
 
 import model.Onibus;
 import model.Reserva;
+import view.PaginaWeb;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,19 +32,20 @@ public class ConnectionHttp implements Runnable {
 
             ResponseHttp resp;
 
-            // exemplo usado para o teste de conexão
             String html;
 
             if (req.getRecurso().equals("/")) {
+
                 resp = new ResponseHttp(req.getProtocolo(), 200, "OK");
 
-                html = "<html><body><h1>Conectado!</h1></body></html>";
+                html = new PaginaWeb().getHtml(onibus, reservas, "");
 
                 resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
 
                 System.out.println(resp);
             }
+
 
             else {
                 resp = new ResponseHttp(req.getProtocolo(), 404, "Not Found");

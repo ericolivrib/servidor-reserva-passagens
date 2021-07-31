@@ -1,12 +1,11 @@
 package controller;
 
-import log.Log;
 import model.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ReservarPassagem implements Runnable {
+public class ReservaPassagem implements Runnable {
 
     private Onibus onibus;
     private Reserva reserva;
@@ -15,7 +14,7 @@ public class ReservarPassagem implements Runnable {
     private int numeroPoltrona;
     private String registro;
 
-    public ReservarPassagem(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
+    public ReservaPassagem(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
         this.onibus = onibus;
         this.reservas = reservas;
         this.numeroPoltrona = numeroPoltrona;
@@ -62,7 +61,7 @@ public class ReservarPassagem implements Runnable {
                 System.out.println("A reserva não foi efetuada!!!\n");
             }
 
-            new Log(registro);
+            new EscreveLog().gravarRegistro(registro);
         }
     }
 
