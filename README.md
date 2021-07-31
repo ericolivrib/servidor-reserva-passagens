@@ -2,9 +2,11 @@
 
 Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de reserva de passagens de ônibus.
 
-### Tecnologias que serão utilizadas
-
+###### Linguagem
 - Java
+
+###### Framework
+
 - Bootstrap (dentro de uma classe)
 
 ### TODO
