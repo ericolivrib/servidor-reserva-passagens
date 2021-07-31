@@ -1,4 +1,4 @@
-package controller.http;
+package http;
 
 import controller.ReservaPoltrona;
 import model.Onibus;
@@ -34,11 +34,13 @@ public class ConnectionHttp implements Runnable {
             RequestHttp req = new RequestHttp().lerRequisicao(entrada);
             System.out.println(req);
 
-            ResponseHttp resp;
+            ResponseHttp resp = new ResponseHttp("", 0, "");
 
             String html;
 
             if (req.getRecurso().equals("/")) {
+
+                System.out.println("[CLIENTE] Se conectou à página.\n");
 
                 resp = new ResponseHttp(req.getProtocolo(), 200, "OK");
 
@@ -52,35 +54,39 @@ public class ConnectionHttp implements Runnable {
 
             else if (req.getRecurso().contains("/reservar")) {
 
+                System.out.println("[CLIENTE] Requisitou uma reserva.\n");
+
                 String[] dadosReserva = req.getRecurso().split("[?,=,&]");
+                String retorno = "";
 
-                Passageiro passageiro = new Passageiro(dadosReserva[2], conexao.getInetAddress().toString());
-                Poltrona poltrona = new Poltrona(Integer.parseInt(dadosReserva[4]));
+                // retira o simbolo "+" que separa o nome do sobrenome
+                String[] nome = dadosReserva[2].split("\\+");
+                StringBuilder nomeSeparado = new StringBuilder();
 
-                new Thread(new ReservaPoltrona(onibus, reservas, poltrona.getNumero(), passageiro)).start();
-
-                String retorno;
-                boolean falhou = poltrona.isLivre();
-
-                if (falhou) {
-                    retorno = "Ops";
-                } else {
-                    retorno = "OK";
+                for (String s : nome) {
+                    nomeSeparado.append(s).append(" ");
                 }
 
+                Passageiro passageiro = new Passageiro(nomeSeparado.toString(), conexao.getInetAddress().toString());
+
+                Poltrona poltrona = new Poltrona(Integer.parseInt(dadosReserva[4]));
+
+                new Thread(new ReservaPoltrona(onibus, reservas, poltrona.getNumero(), passageiro, retorno)).start();
+
                 html = new PaginaWeb().getHtml(onibus, reservas, retorno);
-                retorno = "";
-
                 resp = new ResponseHttp(req.getProtocolo(), 200, "OK");
-
                 resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
             }
 
             else {
+                System.out.println("[CLIENTE] Acessou uma página inválida.\n");
+
                 resp = new ResponseHttp(req.getProtocolo(), 404, "Not Found");
 
-                html = "<html><body><h1>Página não encontrada!</h1></body></html>";
+                String notFound = "<h1 class=\"text-center text-danger\">Página não encontrada!</h1>";
+
+                html = new PaginaWeb().head + notFound;
 
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
                 resp.setCabecalho(("HTTP/1.1 404 Not Found\n\n" + html).getBytes(StandardCharsets.UTF_8));
@@ -88,6 +94,7 @@ public class ConnectionHttp implements Runnable {
 
             OutputStream saida = conexao.getOutputStream();
             resp.escreverSaida(saida);
+
         } catch (IOException e) {
             try {
                 conexao.close();

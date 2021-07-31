@@ -29,7 +29,7 @@ public class PaginaWeb {
             "\n" +
             "<style>\n" +
                 "#onibus {\n" +
-                    "margin-top: 50px;\n" +
+                    "margin-top: 20px;\n" +
                     "margin-bottom: 60px;\n" +
                     "border: 2px solid #b8b8b8;\n" +
                     "border-bottom-left-radius: 72px;\n" +
@@ -123,8 +123,8 @@ public class PaginaWeb {
                 "<br><br>\n" +
                 "<h2 class=\"text-center\">Selecione a poltrona</h2>\n" +
                 formulario +
-                onibus(onibus) +
                 alert(retorno) +
+                onibus(onibus) +
                 tabelaReservas(reservas) +
             "</div>\n";
     }

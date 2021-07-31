@@ -1,6 +1,5 @@
-package controller.http;
+package http;
 
-import controller.EscreveLog;
 import model.Onibus;
 import model.Reserva;
 
@@ -8,8 +7,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ServerHttp {
 

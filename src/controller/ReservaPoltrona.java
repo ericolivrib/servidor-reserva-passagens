@@ -4,6 +4,7 @@ import model.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ReservaPoltrona implements Runnable {
 
@@ -13,12 +14,14 @@ public class ReservaPoltrona implements Runnable {
     private Passageiro passageiro;
     private int numeroPoltrona;
     private String registro;
+    private String retorno;
 
-    public ReservaPoltrona(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro) {
+    public ReservaPoltrona(Onibus onibus, ArrayList<Reserva> reservas, int numeroPoltrona, Passageiro passageiro, String retorno) {
         this.onibus = onibus;
         this.reservas = reservas;
         this.numeroPoltrona = numeroPoltrona;
         this.passageiro = passageiro;
+        this.retorno = retorno;
     }
 
     @Override
@@ -40,35 +43,37 @@ public class ReservaPoltrona implements Runnable {
                         reserva = new Reserva(passageiro, poltrona, LocalDateTime.now());
                         reservas.add(reserva);
 
-                        System.out.println("Reserva efetuada!");
+                        System.out.println("Reserva efetuada!\n");
                     }
                 }
 
-                String[] nome = passageiro.getNome().split("\\+");
-
                 registro = "" +
                     "-----------------------------------------\n" +
-                    "NOME: " + passageiro.getNome() +"\n" +
-                    "IP: " + passageiro.getIp() + "\n" +
-                    "POLTRONA: " + numeroPoltrona + "\n" +
-                    "DATA: " + reserva.getData() + "\n" +
-                    "HORA: " + reserva.getHora() + "\n" +
-                    "STATUS: Conseguiu concluir a reserva!\n" +
+                    "NOME...........: " + passageiro.getNome() +"\n" +
+                    "IP.............: " + passageiro.getIp() + "\n" +
+                    "POLTRONA.......: " + numeroPoltrona + "\n" +
+                    "DATA...........: " + reserva.getData() + "\n" +
+                    "HORA...........: " + reserva.getHora() + "\n" +
+                    "STATUS.........: Conseguiu concluir a reserva!\n" +
                     "-----------------------------------------";
+
+                retorno = "OK";
             }
 
             else {
                 registro = "" +
                     "-----------------------------------------\n" +
-                    "NOME: " + passageiro.getNome() + "\n" +
-                    "IP: " + passageiro.getIp() + "\n" +
-                    "POLTRONA: " + numeroPoltrona + "\n" +
-                    "DATA: " + reserva.getData() + "\n" +
-                    "HORA: " + reserva.getHora() + "\n" +
-                    "STATUS: Falhou na tentativa de reserva!\n" +
+                    "NOME...........: " + passageiro.getNome() + "\n" +
+                    "IP.............: " + passageiro.getIp() + "\n" +
+                    "POLTRONA.......: " + numeroPoltrona + "\n" +
+                    "DATA...........: " + reserva.getData() + "\n" +
+                    "HORA...........: " + reserva.getHora() + "\n" +
+                    "STATUS.........: Falhou na tentativa de reserva!\n" +
                     "-----------------------------------------";
 
                 System.out.println("A reserva não foi efetuada!!!\n");
+
+                retorno = "Ops";
             }
 
             new EscreveLog().gravarRegistro(registro);
@@ -139,5 +144,13 @@ public class ReservaPoltrona implements Runnable {
 
     public void setRegistro(String registro) {
         this.registro = registro;
+    }
+
+    public String getRetorno() {
+        return retorno;
+    }
+
+    public void setRetorno(String retorno) {
+        this.retorno = retorno;
     }
 }
