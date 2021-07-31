@@ -20,5 +20,5 @@ Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de re
 - [x] Implementar Produtores e Consumidores para a escrita no arquivo _Log.txt_
 - [x] Página de reservas
 - [x] Classe para a página de reservas
-- [ ] Consertar alguns bugs
+- [x] Consertar alguns bugs
 - [ ] Entregar o trabalho

@@ -36,28 +36,12 @@ public class RequestHttp {
         return requisicao;
     }
 
-    public String getMetodo() {
-        return metodo;
-    }
-
-    public void setMetodo(String metodo) {
-        this.metodo = metodo;
-    }
-
     public String getRecurso() {
         return recurso;
     }
 
-    public void setRecurso(String recurso) {
-        this.recurso = recurso;
-    }
-
     public String getProtocolo() {
         return protocolo;
-    }
-
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
     }
 
     @Override

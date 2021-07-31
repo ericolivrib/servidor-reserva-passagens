@@ -36,7 +36,6 @@ public class ServerHttp {
 
         while (true) {
             Socket conexao = servidor.accept();
-            String cliente = conexao.getInetAddress().getHostAddress();
 
             new Thread(new ConnectionHttp(conexao, onibus, reservas)).start();
         }
