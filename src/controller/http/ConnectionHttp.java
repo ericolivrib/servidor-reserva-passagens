@@ -60,8 +60,9 @@ public class ConnectionHttp implements Runnable {
                 new Thread(new ReservaPoltrona(onibus, reservas, poltrona.getNumero(), passageiro)).start();
 
                 String retorno;
+                boolean falhou = onibus.getPoltronas().get(poltrona.getNumero() - 1).isLivre();
 
-                if (onibus.getPoltronas().get(poltrona.getNumero() - 1).isLivre()) {
+                if (!falhou) {
                     retorno = "Ops";
                 } else {
                     retorno = "OK";

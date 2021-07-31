@@ -35,8 +35,6 @@ public class ServerHttp {
         Onibus onibus = new Onibus();
         ArrayList<Reserva> reservas = new ArrayList<>();
 
-        new Thread(new EscreveLog.Consumidor()).start();
-
         while (true) {
             Socket conexao = servidor.accept();
             String cliente = conexao.getInetAddress().getHostAddress();

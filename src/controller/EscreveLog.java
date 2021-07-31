@@ -19,6 +19,8 @@ public class EscreveLog {
             fila.add(registro);
             fila.notify();
             System.out.println("[LOG] Gravou o registro. \"" + registro + "\"");
+
+            new Thread(new EscreveLog.Consumidor()).start();
         }
     }
 

@@ -26,7 +26,7 @@ public class ReservaPoltrona implements Runnable {
 
         synchronized (onibus.getPoltronas()) {
 
-            if (poltronaLivre(getNumeroPoltrona(), getOnibus())) {
+            if (poltronaLivre(numeroPoltrona, onibus)) {
 
                 System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...");
 
@@ -44,27 +44,29 @@ public class ReservaPoltrona implements Runnable {
                     }
                 }
 
+                String[] nome = passageiro.getNome().split("[+]");
+
                 registro = "" +
-                        "-----------------------------------------\n" +
-                        "NOME: " + passageiro.getNome() + "\n" +
-                        "IP: " + passageiro.getIp() + "\n" +
-                        "POLTRONA: " + numeroPoltrona + "\n" +
-                        "DATA: " + reserva.getData() + "\n" +
-                        "HORA: " + reserva.getHora() + "\n" +
-                        "STATUS: Conseguiu concluir a reserva!\n" +
-                        "-----------------------------------------";
+                    "-----------------------------------------\n" +
+                    "NOME: " + nome[0] + " " + nome[1] + " " + nome[2] +"\n" +
+                    "IP: " + passageiro.getIp() + "\n" +
+                    "POLTRONA: " + numeroPoltrona + "\n" +
+                    "DATA: " + reserva.getData() + "\n" +
+                    "HORA: " + reserva.getHora() + "\n" +
+                    "STATUS: Conseguiu concluir a reserva!\n" +
+                    "-----------------------------------------";
             }
 
             else {
                 registro = "" +
-                        "-----------------------------------------\n" +
-                        "NOME: " + passageiro.getNome() + "\n" +
-                        "IP: " + passageiro.getIp() + "\n" +
-                        "POLTRONA: " + numeroPoltrona + "\n" +
-                        "DATA: " + reserva.getData() + "\n" +
-                        "HORA: " + reserva.getHora() + "\n" +
-                        "STATUS: Falhou na tentativa de reserva!\n" +
-                        "-----------------------------------------";
+                    "-----------------------------------------\n" +
+                    "NOME: " + passageiro.getNome() + "\n" +
+                    "IP: " + passageiro.getIp() + "\n" +
+                    "POLTRONA: " + numeroPoltrona + "\n" +
+                    "DATA: " + reserva.getData() + "\n" +
+                    "HORA: " + reserva.getHora() + "\n" +
+                    "STATUS: Falhou na tentativa de reserva!\n" +
+                    "-----------------------------------------";
 
                 System.out.println("A reserva não foi efetuada!!!\n");
             }
