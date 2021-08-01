@@ -2,6 +2,8 @@
 
 Serviço de reserva de passagens de ônibus baseado implementado com Threads e sincronização entre processos.
 
+Não há permanência de dados, somente um arquivo _log.txt_ com os dados das reservas.  
+
 ### TODO
 
 - [x] Classe de _request_
@@ -13,3 +15,23 @@ Serviço de reserva de passagens de ônibus baseado implementado com Threads e s
 - [x] Classe para a página de reservas
 - [x] Consertar alguns bugs
 - [ ] Entregar o trabalho
+
+### Funcionamento
+
+###### Tela inicial
+
+- O usuário deve selecionar uma poltrona e em seguida informar o nome do passageiro.
+
+![](C:\Users\Érico\OneDrive\Imagens\imagens-servidor-reserva-passagens\tela-reserva-passagens.jpeg)
+
+###### Efetuando reserva
+
+- Se a reserva for efetuada, uma tela de confirmação irá aparecer junto com os dados da reserva.
+
+![](C:\Users\Érico\OneDrive\Imagens\imagens-servidor-reserva-passagens\reserva-efetuada.jpeg)
+
+###### Voltando à tela inicial
+
+- Após retornar à tela inicial, os mesmos dados aparecerão em uma tabela abaixo do ônibus, e a poltrona selecionada por ele já estará desabilitada para reserva.
+
+![](C:\Users\Érico\OneDrive\Imagens\imagens-servidor-reserva-passagens\apos-efetuada.jpeg)
