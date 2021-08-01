@@ -1,15 +1,6 @@
 # Servidor de Reserva de Passagens
 
-Trabalho 1 da cadeira de **Sistemas Operacionais A** focado em um serviço de reserva de passagens de ônibus.
-
-### Softwares utilizados
-
-###### IDE
-
-- Intellij IDEA
-
-###### Linguagem
-- Java
+Serviço de reserva de passagens de ônibus baseado implementado com Threads e sincronização entre processos.
 
 ### TODO
 
