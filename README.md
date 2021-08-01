@@ -1,6 +1,6 @@
 # Servidor de Reserva de Passagens
 
-Serviço de reserva de passagens de ônibus baseado implementado com Threads e sincronização entre processos.
+Serviço de reserva de passagens de ônibus implementado usando Threads e sincronização entre processos.
 
 Não há permanência de dados, somente um arquivo _log.txt_ com os dados das reservas.  
 
