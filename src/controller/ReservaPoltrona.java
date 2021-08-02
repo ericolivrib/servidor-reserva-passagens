@@ -25,9 +25,10 @@ public class ReservaPoltrona implements Runnable {
     @Override
     public void run() {
 
-        synchronized (onibus.getPoltronas()) {
+        synchronized (onibus.getPoltronas().get(numeroPoltrona - 1)) {
 
             String registro;
+
             if (poltronaLivre(numeroPoltrona, onibus)) {
 
                 System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...\n");
