@@ -1,5 +1,6 @@
 package http;
 
+import controller.EscreveLog;
 import model.Onibus;
 import model.Reserva;
 
@@ -12,7 +13,7 @@ public class ServerHttp {
 
     public static void main(String[] args) throws IOException {
 
-        new ServerHttp(80).conectar();
+        new ServerHttp(8081).conectar();
     }
 
     private final int porta;
@@ -33,6 +34,8 @@ public class ServerHttp {
 
         Onibus onibus = new Onibus();
         ArrayList<Reserva> reservas = new ArrayList<>();
+
+        new Thread(new EscreveLog.Consumidor()).start();
 
         while (true) {
             Socket conexao = servidor.accept();

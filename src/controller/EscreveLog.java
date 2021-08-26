@@ -19,8 +19,6 @@ public class EscreveLog {
             fila.add(registro);
             fila.notify();
             System.out.println("[LOG] Gravou o registro da reserva.\n");
-
-            new Thread(new EscreveLog.Consumidor()).start();
         }
     }
 
@@ -55,8 +53,8 @@ public class EscreveLog {
                         escritorBuffer.write(reg);
                         escritorBuffer.newLine();
 
-                        escritorBuffer.close();
-                        escritorArquivo.close();
+                        escritorBuffer.flush();
+                        escritorArquivo.flush();
 
                     } catch (IOException e) {
                         e.printStackTrace();
