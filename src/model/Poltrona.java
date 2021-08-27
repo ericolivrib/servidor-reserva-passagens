@@ -2,7 +2,7 @@ package model;
 
 public class Poltrona {
 
-    private int numero;
+    private final int numero;
     private boolean livre;
 
     public Poltrona(int numero, boolean livre) {

@@ -2,8 +2,8 @@ package model;
 
 public class Passageiro {
 
-    private String nome;
-    private String ip;
+    private final String nome;
+    private final String ip;
 
     public Passageiro(String nome, String ip) {
         this.nome = nome;

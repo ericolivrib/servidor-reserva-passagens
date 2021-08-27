@@ -6,10 +6,10 @@ import java.time.LocalTime;
 
 public class Reserva {
 
-    private Passageiro passageiro;
-    private Poltrona poltrona;
-    private LocalDate data;
-    private LocalTime hora;
+    private final Passageiro passageiro;
+    private final Poltrona poltrona;
+    private final LocalDate data;
+    private final LocalTime hora;
 
     public Reserva(Passageiro passageiro, Poltrona poltrona, LocalDateTime dataHora) {
         this.passageiro = passageiro;
