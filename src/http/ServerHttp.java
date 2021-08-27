@@ -12,8 +12,7 @@ import java.util.ArrayList;
 public class ServerHttp {
 
     public static void main(String[] args) throws IOException {
-
-        new ServerHttp(8081).conectar();
+        new ServerHttp(80).conectar();
     }
 
     private final int porta;
@@ -22,24 +21,15 @@ public class ServerHttp {
         this.porta = porta;
     }
 
-    /**
-     * Aguarda até que haja alguma conexão.
-     * @throws IOException
-     */
     public void conectar() throws IOException {
-
         ServerSocket servidor = new ServerSocket(porta);
-
-        System.out.println("Servidor conectado na porta " + porta + "! \nAguardando conexão...\n");
-
+        System.out.println("Aguardando conexão...\n");
         Onibus onibus = new Onibus();
         ArrayList<Reserva> reservas = new ArrayList<>();
-
         new Thread(new EscreveLog.Consumidor()).start();
 
         while (true) {
             Socket conexao = servidor.accept();
-
             new Thread(new ConnectionHttp(conexao, onibus, reservas)).start();
         }
     }

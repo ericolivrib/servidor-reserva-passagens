@@ -147,7 +147,6 @@ public class PaginaWeb {
         "</form>";
 
     public String onibus(Onibus onibus) {
-
         String bus;
         String[] disabled = new String[onibus.getPoltronas().size()];
         String[] btn = new String[onibus.getPoltronas().size()];

@@ -5,7 +5,6 @@ import model.Reserva;
 public class MensagemResposta {
 
     public String getHtml(Reserva reserva, String nome, int numeroPoltrona) {
-
         String html;
 
         if (reserva.getPassageiro().getNome().equals(nome) && reserva.getPoltrona().getNumero() == numeroPoltrona) {
@@ -32,9 +31,7 @@ public class MensagemResposta {
                         "</div>\n" +
                     "</div>\n" +
                 "</div>\n";
-        }
-
-        else {
+        } else {
             html = "" +
                 "<div class=\"row\">\n" +
                     "<div class=\"col-md-12\">\n" +
@@ -54,7 +51,6 @@ public class MensagemResposta {
                     "</div>\n" +
                 "</div>\n";
         }
-
         return html + svg;
     }
 

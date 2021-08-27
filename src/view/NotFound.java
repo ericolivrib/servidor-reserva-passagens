@@ -21,7 +21,6 @@ public class NotFound {
                     "</div>\n" +
                 "</div>\n" +
             "</div>\n";
-
         return html + new MensagemResposta().svg;
     }
 }

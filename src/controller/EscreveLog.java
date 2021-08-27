@@ -14,7 +14,6 @@ public class EscreveLog {
     private static final ArrayList<String> fila = new ArrayList<>();
 
     public void gravarRegistro(String registro) {
-
         synchronized (fila) {
             fila.add(registro);
             fila.notify();
@@ -23,10 +22,8 @@ public class EscreveLog {
     }
 
     public static class Consumidor implements Runnable {
-
         @Override
         public void run() {
-
             while (true) {
                 String reg;
 
@@ -55,7 +52,6 @@ public class EscreveLog {
 
                         escritorBuffer.flush();
                         escritorArquivo.flush();
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

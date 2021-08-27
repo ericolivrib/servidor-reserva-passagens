@@ -22,32 +22,16 @@ public class Reserva {
         return passageiro;
     }
 
-    public void setPassageiro(Passageiro passageiro) {
-        this.passageiro = passageiro;
-    }
-
     public Poltrona getPoltrona() {
         return poltrona;
-    }
-
-    public void setPoltrona(Poltrona poltrona) {
-        this.poltrona = poltrona;
     }
 
     public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
     public LocalTime getHora() {
         return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
     }
 
     @Override

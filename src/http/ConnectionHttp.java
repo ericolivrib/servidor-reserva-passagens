@@ -1,13 +1,8 @@
 package http;
 
 import controller.ReservaPoltrona;
-import model.Onibus;
-import model.Passageiro;
-import model.Poltrona;
-import model.Reserva;
-import view.MensagemResposta;
-import view.NotFound;
-import view.PaginaWeb;
+import model.*;
+import view.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,22 +28,18 @@ public class ConnectionHttp implements Runnable {
 
     @Override
     public void run() {
-
         try (InputStream entrada = conexao.getInputStream()) {
-
             RequestHttp req = lerRequisicao(entrada);
+
             System.out.println(req);
 
             ResponseHttp resp;
-
             String html;
 
             if (req.getRecurso().equals("/")) {
-
                 System.out.println("[CLIENTE] Se conectou à página.\n");
 
                 resp = new ResponseHttp(200, "OK");
-
                 html = new PaginaWeb().getHtml(onibus, reservas);
 
                 resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
@@ -58,11 +49,9 @@ public class ConnectionHttp implements Runnable {
             }
 
             else if (req.getRecurso().contains("/reservar")) {
-
                 System.out.println("[CLIENTE] Requisitou uma reserva.\n");
 
                 String[] dadosReserva = req.getRecurso().split("[?,=,&]");
-
                 // retira o simbolo "+" que separa o nome do sobrenome
                 String[] nome = dadosReserva[2].split("\\+");
                 StringBuilder nomeSeparado = new StringBuilder();
@@ -73,18 +62,14 @@ public class ConnectionHttp implements Runnable {
                 }
 
                 Passageiro passageiro = new Passageiro(nomeSeparado.toString(), conexao.getInetAddress().toString());
-
                 Poltrona poltrona = new Poltrona(Integer.parseInt(dadosReserva[4]));
 
                 new Thread(new ReservaPoltrona(onibus, reservas, poltrona.getNumero(), passageiro)).start();
-
                 Reserva reserva = new Reserva(passageiro, poltrona, LocalDateTime.now());
-
                 html = new PaginaWeb().head + new PaginaWeb().nav + new MensagemResposta().getHtml(reserva, passageiro.getNome(), poltrona.getNumero());
-
                 resp = new ResponseHttp(200, "OK");
-                resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
 
+                resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
                 resp.setConteudo(html.getBytes(StandardCharsets.UTF_8));
             }
 
@@ -92,7 +77,6 @@ public class ConnectionHttp implements Runnable {
                 System.out.println("[CLIENTE] A mensagem de resposta foi mostrada.\n");
 
                 resp = new ResponseHttp(200, "OK");
-
                 html = new PaginaWeb().getHtml(onibus, reservas);
 
                 resp.setCabecalho(("HTTP/1.1 200 OK\n" + "Content-Type: text/html; charset=UTF-8\n\n").getBytes(StandardCharsets.UTF_8));
@@ -103,9 +87,7 @@ public class ConnectionHttp implements Runnable {
                 System.out.println("[CLIENTE] Acessou uma página inválida.\n");
 
                 resp = new ResponseHttp(404, "Not Found");
-
                 String notFound = new NotFound().getHtml();
-
                 html = new PaginaWeb().head + new PaginaWeb().nav + notFound;
 
                 resp.setCabecalho(("HTTP/1.1 404 Not Found\n\n" + html).getBytes(StandardCharsets.UTF_8));
@@ -113,13 +95,7 @@ public class ConnectionHttp implements Runnable {
 
             OutputStream saida = conexao.getOutputStream();
             resp.escreverSaida(saida);
-
         } catch (IOException e) {
-            try {
-                conexao.close();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
             e.printStackTrace();
         }
     }

@@ -24,19 +24,14 @@ public class ReservaPoltrona implements Runnable {
 
     @Override
     public void run() {
-
         synchronized (onibus.getPoltronas().get(numeroPoltrona - 1)) {
-
             String registro;
 
             if (poltronaLivre(numeroPoltrona, onibus)) {
-
                 System.out.println("Reservando a poltrona " + numeroPoltrona + " para " + passageiro.getNome() + "...\n");
 
                 for (Poltrona poltrona : onibus.getPoltronas()) {
-
                     if (poltrona.getNumero() == numeroPoltrona) {
-
                         onibus.getPoltronas().get(numeroPoltrona - 1).setLivre(false);
                         poltrona.setLivre(false);
 
@@ -48,17 +43,15 @@ public class ReservaPoltrona implements Runnable {
                 }
 
                 registro = "" +
-                    "-----------------------------------------\n" +
-                    "NOME...........: " + reserva.getPassageiro().getNome() +"\n" +
-                    "IP.............: " + reserva.getPassageiro().getIp() + "\n" +
-                    "POLTRONA.......: " + reserva.getPoltrona().getNumero() + "\n" +
-                    "DATA...........: " + reserva.getData() + "\n" +
-                    "HORA...........: " + reserva.getHora() + "\n" +
-                    "STATUS.........: Conseguiu concluir a reserva!\n" +
-                    "-----------------------------------------";
-            }
-
-            else {
+                        "-----------------------------------------\n" +
+                        "NOME...........: " + reserva.getPassageiro().getNome() + "\n" +
+                        "IP.............: " + reserva.getPassageiro().getIp() + "\n" +
+                        "POLTRONA.......: " + reserva.getPoltrona().getNumero() + "\n" +
+                        "DATA...........: " + reserva.getData() + "\n" +
+                        "HORA...........: " + reserva.getHora() + "\n" +
+                        "STATUS.........: Conseguiu concluir a reserva!\n" +
+                        "-----------------------------------------";
+            } else {
                 registro = "" +
                     "-----------------------------------------\n" +
                     "NOME...........: " + passageiro.getNome() +"\n" +
@@ -76,14 +69,7 @@ public class ReservaPoltrona implements Runnable {
         }
     }
 
-    /**
-     * Verifica se a poltrona recebida por parâmetro está livre
-     * @param numeroPoltrona
-     * @param onibus
-     * @return
-     */
     private boolean poltronaLivre(int numeroPoltrona, Onibus onibus) {
-
         for (Poltrona poltrona : onibus.getPoltronas()) {
             if (poltrona.getNumero() == numeroPoltrona) {
                 if (!poltrona.isLivre()) {

@@ -8,7 +8,6 @@ public class Onibus {
     private final ArrayList<Poltrona> poltronas = new ArrayList<>(LUGARES);
 
     public Onibus() {
-
         for (int i = 1; i <= LUGARES; i++) {
             Poltrona p = new Poltrona(i, true);
             poltronas.add(p);
