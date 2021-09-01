@@ -38,7 +38,7 @@ public class EscreveLog {
                     System.out.println("[LOG] Salvou o registro.\n");
 
                     try {
-                        arquivo = new File("src/logs/log.txt");
+                        arquivo = new File("logs/log.txt");
 
                         if (!arquivo.exists()) {
                             arquivo.createNewFile();
